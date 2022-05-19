@@ -19,7 +19,7 @@ const client = new DiscordJS.Client({
 client.on('ready', () => {
     imperator = client.users.cache.get('534032368634167311');
     client.guilds.cache.forEach((guild) => {
-        prefixes[guild.id] = ['#',];
+        prefixes[guild.id] = ['^',];
     })
     client.user.setPresence(
         {
@@ -49,7 +49,7 @@ client.on('messageCreate', (message) => {
         message.crosspost();
     }
     let content = message.content.trim();
-    if (message.content.startsWith('<@755471395840065646> '))
+    if (message.content.startsWith(`<@${client.user.id}> `))
         content = content.slice(22);
     else
     {
@@ -88,10 +88,9 @@ client.on('messageCreate', (message) => {
             if (!prefixes[message.guild.id].length)
             {
                 message.reply('Префиксов нема');
+                return;
             }
-            let prefixOutput = '';
-            prefixes[message.guild.id].forEach((prefix) => {prefixOutput += `\`${prefix}\`, `});
-            message.reply(`Мои префиксы:   ${prefixOutput.slice(0, -2)}`);
+            message.reply(`Мои префиксы:   ${getPrefixes(message.guild.id)}`);
             return;
         }
         if (args[1] == 'remove')
@@ -108,6 +107,12 @@ client.on('messageCreate', (message) => {
                 return;
             }
             prefixes[message.guild.id].splice(eltodeleteind, 1);
+            if (prefixes[message.guild.id].length != 0)
+            {
+                message.reply(`Префикс ${args[2]} истреблён, остались ${getPrefixes(message.guild.id)}`);
+                return;
+            }
+            message.reply(`Префикс ${args[2]} истреблён, все префиксы ушли в ислам`);
             return;
         }
         prefixes[message.guild.id].push(args[1]);
@@ -130,6 +135,13 @@ let voiceConfig = {
     // inkmsgid,
 }
 
+function getPrefixes(guildid)
+{
+    let prefixesres = '';
+    prefixes[guildid].forEach((item) => {prefixesres += `\`${item}\`, `});
+    return prefixesres.slice(0, -2);
+}
+
 client.on('voiceStateUpdate', (newVoiceState) => {
     if (voiceConfig.id != voiceConfig.inkid && newVoiceState.id != voiceConfig.killaid)
         return;
@@ -137,7 +149,7 @@ client.on('voiceStateUpdate', (newVoiceState) => {
     // console.log(newVoiceState);
     // console.log(`${imperator?.username} and ${actor?.username}`);
     if (!actor)
-        console.log('U fucked up');
+        imperator.send('U fucked up');
     if (newVoiceState.id == voiceConfig.inkid)
     {
         if (voiceConfig.inkin)
