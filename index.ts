@@ -299,7 +299,7 @@ let voiceConfig = {
     inkin: false,
     killain: false,
     inkid: '702721820499116054',
-    killaid: '398132164182671361',
+    killaid: '398132164182671361!',
     // was just testing out on my accounts
     // inkid: '534032368634167311',
     // killaid: '716276860660613150',
