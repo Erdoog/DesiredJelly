@@ -254,7 +254,10 @@ client.on('messageCreate', (message) => {
                 }
                 defaultprefix = args[3];
                 message.reply(`Теперь при добавлении на сервер по дефолту мой префикс будет \`${defaultprefix}\``);
+                return;
             }
+            message.reply(`Мой дефолтный префикс: \`${defaultprefix}\``);
+            return;
         }
         if (args[1] == 'remove')
         {
