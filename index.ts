@@ -41,7 +41,7 @@ client.on('ready', () => {
             ]
         }
     );
-    const guild = client.guilds.cache.get(mGuildId)!;
+    const guild = client.guilds.cache.get(mGuildId + '!');
     let commands;
     if (guild)
         commands = guild.commands;
