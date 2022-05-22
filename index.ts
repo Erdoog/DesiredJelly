@@ -296,6 +296,7 @@ client.on('messageCreate', (message) => {
         message.reply(`Мои префиксы:   ${getPrefixes(message?.guild?.id!)}`);
         return;
     }
+    message.reply('Ты не указал команду, разраб пока что слишком ленив чтобы добавить команду help');
 })
 
 let voiceConfig = {
