@@ -204,7 +204,11 @@ client.on('messageCreate', (message) => {
     }
     let content = message.content.trim();
     if (message.content.startsWith(`<@${client?.user?.id!}> `))
+    {
+        if (content.length == 22)
+            return;
         content = content.slice(22);
+    }
     else
     {
         // if (!prefixes[message.guild.id].length)
@@ -215,6 +219,8 @@ client.on('messageCreate', (message) => {
         prefixes[message?.guild?.id!].forEach((el) => {
             if (content.startsWith(el))
             {
+                if (content.length == el.length)
+                    return;
                 content = content.slice(el.length)
                 passable = true;
                 return;
