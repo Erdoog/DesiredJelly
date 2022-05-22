@@ -288,14 +288,14 @@ client.on('messageCreate', (message) => {
             return;
         }
         
-    }
-    if (!prefixes[message?.guild?.id!].length)
-    {
-        message.reply('Префиксов нема');
+        if (!prefixes[message?.guild?.id!].length)
+        {
+            message.reply('Префиксов нема');
+            return;
+        }
+        message.reply(`Мои префиксы:   ${getPrefixes(message?.guild?.id!)}`);
         return;
     }
-    message.reply(`Мои префиксы:   ${getPrefixes(message?.guild?.id!)}`);
-    return;
 })
 
 let voiceConfig = {
