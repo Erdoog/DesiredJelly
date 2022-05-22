@@ -192,13 +192,13 @@ client.on('messageCreate', (message) => {
     let senderpermitted = false;
     if (permittedusrs.indexOf(message.author) > -1)
         senderpermitted = true;
-    if (message.channel.id == '926483312212598804')
+    if (message.channel.id == '720471221589770240')
     {
         message.react('👍');
         message.react('👎');
         return;
     }
-    if (message.channelId == '950637260561326090')
+    if (['700613209828360223', '714887829318139965', '703700712931983372'].indexOf(message.channel.id) > -1)
     {
         message.crosspost();
     }
