@@ -170,7 +170,7 @@ client.on('interactionCreate', async (interaction) => {
             });
         }
     }
-})
+});
 
 // client.user?.setActivity({
 //     name: options.getString('subject', true),
@@ -180,11 +180,11 @@ client.on('interactionCreate', async (interaction) => {
 client.on('guildCreate', (guild) => {
     console.log(guild.name);
     prefixes[guild.id] = [defaultprefix,];
-})
+});
 
 client.on('guildDelete', (guild) => {
     delete prefixes[guild.id];
-})
+});
 
 client.on('messageCreate', (message) => {
     if (message.author.bot)
@@ -303,7 +303,7 @@ client.on('messageCreate', (message) => {
         return;
     }
     message.reply('Команда которую ты указал не поддерживается, разраб пока что слишком ленив чтобы добавить команду help');
-})
+});
 
 let voiceConfig = {
     inkin: false,
